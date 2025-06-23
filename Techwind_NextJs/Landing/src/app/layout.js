@@ -6,13 +6,13 @@ import { Nunito, Work_Sans, EB_Garamond, Kaushan_Script, Alex_Brush } from 'next
 const nunito = Nunito({
   subsets: ['latin'],
   variable: '--font-nunito',
-  weight: ['300','400','500','600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 })
 const work_sans = Work_Sans({
   subsets: ['latin'],
   variable: '--font-work-sans',
-  weight: ['300','400','500','600', '700'],
+  weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
 })
 const eb_garamond = EB_Garamond({
