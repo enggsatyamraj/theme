@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation'
-import { LuX, LuUsers, LuBriefcase, LuNewspaper, LuMail, LuStar } from 'react-icons/lu';
+import { LuX, LuUsers, LuBriefcase, LuNewspaper, LuMail, LuStar, LuFileText, LuLogIn, LuUserPlus, LuPalette } from 'react-icons/lu';
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md';
 import { FiTrendingUp, FiHeart, FiMapPin, FiShoppingBag, FiDollarSign, FiLayers } from 'react-icons/fi';
 import { BiBarChart, BiCreditCard, BiTargetLock, BiUser, BiShield } from 'react-icons/bi';
@@ -185,6 +185,44 @@ export default function Navbar(props) {
         }
     ];
 
+    const pagesData = [
+        {
+            icon: <LuLogIn className="size-5 text-blue-600" />,
+            title: "Signin",
+            subtitle: "Access Account",
+            desc: "Login to your Trackog dashboard and manage campaigns.",
+            href: "/signin"
+        },
+        {
+            icon: <LuUserPlus className="size-5 text-emerald-600" />,
+            title: "Signup",
+            subtitle: "Create Account",
+            desc: "Join Trackog and start your performance marketing journey.",
+            href: "/signup"
+        },
+        {
+            icon: <LuFileText className="size-5 text-purple-600" />,
+            title: "Free Trial",
+            subtitle: "Try for Free",
+            desc: "Experience Trackog's full potential with our free trial.",
+            href: "/free-trial"
+        },
+        {
+            icon: <LuPalette className="size-5 text-orange-600" />,
+            title: "Trackier Design",
+            subtitle: "Design System",
+            desc: "Explore Trackier's comprehensive design system and components.",
+            href: "/trackier-design"
+        },
+        {
+            icon: <LuPalette className="size-5 text-pink-600" />,
+            title: "Affice Design",
+            subtitle: "UI Kit",
+            desc: "Browse through Affice's modern UI components and elements.",
+            href: "/affice-design"
+        }
+    ];
+
     return (
         <>
             <nav id="topnav" className={`defaultscroll ${navClass === "nav-light" ? '' : navClass === "nav-sticky" ?
@@ -316,6 +354,77 @@ export default function Navbar(props) {
                                                     <div className="text-center">
                                                         <Link href="#" className="inline-flex items-center text-indigo-600 font-medium text-sm hover:text-indigo-700 transition-colors group">
                                                             Explore All Features
+                                                            <MdKeyboardArrowRight className="ml-1 size-4 group-hover:translate-x-0.5 transition-transform" />
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                {/* Pages */}
+                                <li
+                                    className="relative group"
+                                    onMouseEnter={() => handleMouseEnter('pages')}
+                                    onMouseLeave={handleMouseLeave}
+                                >
+                                    <Link href="#" className="inline-flex items-center font-medium text-slate-900 dark:text-white hover:text-indigo-600 transition-colors duration-200">
+                                        Pages
+                                        <MdKeyboardArrowDown className={`ml-1 size-4 transition-transform duration-200 ${activeDropdown === 'pages' ? 'rotate-180' : ''}`} />
+                                    </Link>
+
+                                    <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-[600px] bg-white dark:bg-slate-900 shadow-xl rounded-xl border border-gray-100 dark:border-gray-800 z-50 overflow-hidden transition-all duration-300 ease-out ${activeDropdown === 'pages'
+                                        ? 'opacity-100 visible translate-y-0'
+                                        : 'opacity-0 invisible -translate-y-2'
+                                        }`}>
+                                        <div className="grid grid-cols-2 gap-0">
+                                            {/* Left Section - Main Pages */}
+                                            <div className="p-6 border-r border-gray-100 dark:border-gray-800">
+                                                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">User Pages</h3>
+                                                <div className="space-y-1">
+                                                    {pagesData.slice(0, 3).map((item, index) => (
+                                                        <Link href={item.href} key={index} className="group flex items-start space-x-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-all duration-200">
+                                                            <div className="flex-shrink-0 mt-0.5">
+                                                                {item.icon}
+                                                            </div>
+                                                            <div className="min-w-0">
+                                                                <div className="flex items-center space-x-2">
+                                                                    <h4 className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-indigo-600 transition-colors">{item.title}</h4>
+                                                                    <span className="text-xs text-gray-400">→ {item.subtitle}</span>
+                                                                </div>
+                                                                <p className="text-gray-500 dark:text-gray-400 text-xs mt-0.5 leading-relaxed">{item.desc}</p>
+                                                            </div>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
+
+                                            {/* Right Section - Design Pages */}
+                                            <div className="p-6 bg-gradient-to-br from-orange-50 to-pink-50 dark:from-orange-900/20 dark:to-pink-900/20">
+                                                <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Design Systems</h3>
+                                                <div className="space-y-1">
+                                                    {pagesData.slice(3).map((item, index) => (
+                                                        <Link href={item.href} key={index} className="group flex items-start space-x-3 p-3 rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-all duration-200">
+                                                            <div className="flex-shrink-0 mt-0.5">
+                                                                {item.icon}
+                                                            </div>
+                                                            <div className="min-w-0">
+                                                                <div className="flex items-center space-x-2">
+                                                                    <h4 className="font-medium text-gray-900 dark:text-white text-sm group-hover:text-indigo-600 transition-colors">{item.title}</h4>
+                                                                    <span className="text-xs text-gray-400">→ {item.subtitle}</span>
+                                                                </div>
+                                                                <p className="text-gray-500 dark:text-gray-400 text-xs mt-0.5 leading-relaxed">{item.desc}</p>
+                                                            </div>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+
+                                                {/* Bottom CTA */}
+                                                <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                                    <div className="text-center">
+                                                        <Link href="#" className="inline-flex items-center text-orange-600 font-medium text-sm hover:text-orange-700 transition-colors group">
+                                                            View All Pages
                                                             <MdKeyboardArrowRight className="ml-1 size-4 group-hover:translate-x-0.5 transition-transform" />
                                                         </Link>
                                                     </div>
@@ -526,6 +635,55 @@ export default function Navbar(props) {
                                                     <div>
                                                         <h4 className="text-sm font-medium text-gray-900 dark:text-white">{item.title}</h4>
                                                         <p className="text-xs text-gray-500 dark:text-gray-400">{item.subtitle}</p>
+                                                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{item.desc}</p>
+                                                    </div>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Pages */}
+                            <div>
+                                <button
+                                    onClick={() => toggleMobileDropdown('pages')}
+                                    className="w-full flex items-center justify-between py-3 px-4 text-gray-900 dark:text-white font-medium hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                                >
+                                    Pages
+                                    <MdKeyboardArrowDown className={`size-4 transition-transform duration-300 ${mobileActiveDropdown === 'pages' ? 'rotate-180' : ''}`} />
+                                </button>
+
+                                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileActiveDropdown === 'pages'
+                                    ? 'max-h-96 opacity-100'
+                                    : 'max-h-0 opacity-0'
+                                    }`}>
+                                    <div className="mt-2 ml-4 space-y-1 transform transition-transform duration-300">
+                                        <div className="mb-3">
+                                            <h5 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">User Pages</h5>
+                                            {pagesData.slice(0, 3).map((item, index) => (
+                                                <Link href={item.href} key={index} onClick={toggleMenu} className="flex items-start space-x-3 py-2 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                                                    <div className="flex-shrink-0 mt-0.5">{item.icon}</div>
+                                                    <div>
+                                                        <div className="flex items-center space-x-2">
+                                                            <h4 className="text-sm font-medium text-gray-900 dark:text-white">{item.title}</h4>
+                                                            <span className="text-xs text-gray-400">→ {item.subtitle}</span>
+                                                        </div>
+                                                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{item.desc}</p>
+                                                    </div>
+                                                </Link>
+                                            ))}
+                                        </div>
+                                        <div>
+                                            <h5 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Design Systems</h5>
+                                            {pagesData.slice(3).map((item, index) => (
+                                                <Link href={item.href} key={index} onClick={toggleMenu} className="flex items-start space-x-3 py-2 px-3 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                                                    <div className="flex-shrink-0 mt-0.5">{item.icon}</div>
+                                                    <div>
+                                                        <div className="flex items-center space-x-2">
+                                                            <h4 className="text-sm font-medium text-gray-900 dark:text-white">{item.title}</h4>
+                                                            <span className="text-xs text-gray-400">→ {item.subtitle}</span>
+                                                        </div>
                                                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{item.desc}</p>
                                                     </div>
                                                 </Link>
